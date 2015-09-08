@@ -15,6 +15,19 @@
   <definition name="index" extends="common">
   <put-attribute name="title" value="Java Blog Aggregator" />
   <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+  <put-attribute name="current" value="index"/>
+  </definition>
+  
+  <definition name="users" extends="common">
+  <put-attribute name="title" value="Blog Users" />
+  <put-attribute name="body" value="/WEB-INF/jsp/Users.jsp" />
+  <put-attribute name="current" value="users"/>
+  </definition>
+  
+  <definition name="user-detail" extends="common">
+  <put-attribute name="title" value="Blog Users" />
+  <put-attribute name="body" value="/WEB-INF/jsp/UserDetail.jsp" />
+  <put-attribute name="current" value="users"/>
   </definition>
   
 </tiles-definitions>
