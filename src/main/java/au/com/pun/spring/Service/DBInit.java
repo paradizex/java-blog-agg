@@ -7,6 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import au.com.pun.spring.entity.Blog;
@@ -36,11 +38,11 @@ public class DBInit {
 	public void init(){
 		
 		Role userRole = new Role();
-		userRole.setName("USER_ROLE");
+		userRole.setName("ROLE_USER");
 		roleRepo.save(userRole);
 		
 		Role adminRole = new Role();
-		adminRole.setName("ADMIN_ROLE");
+		adminRole.setName("ROLE_ADMIN");
 		roleRepo.save(adminRole);
 		
 		User user = new User();
@@ -50,7 +52,8 @@ public class DBInit {
 		roles.add(userRole);		
 		user.setRoles(roles);
 		user.setEmail("admin@local.com");
-		user.setPassword("fhbjksdhbf");
+		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode("admin"));
 		userRepo.save(user);
 		
 		User user1 = new User();
@@ -59,7 +62,7 @@ public class DBInit {
 		roles1.add(userRole);		
 		user1.setRoles(roles1);
 		user1.setEmail("user1@local.com");
-		user1.setPassword("kjsdbfkjsad");
+		user1.setPassword(encoder.encode("user1"));
 		userRepo.save(user1);
 		
 		Blog blog = new Blog();

@@ -7,4 +7,6 @@ import au.com.pun.spring.entity.User;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
+	Role findByName(String string);
+
 }

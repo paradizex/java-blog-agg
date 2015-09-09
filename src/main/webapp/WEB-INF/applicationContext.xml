@@ -44,4 +44,7 @@
 	<jpa:repositories base-package="au.com.pun.spring.repository" 
 						entity-manager-factory-ref="emf"
 						transaction-manager-ref="transactionManager"/>
+	
+	<import resource="security.xml"/>					
+						
 </beans>

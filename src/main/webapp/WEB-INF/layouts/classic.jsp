@@ -37,9 +37,18 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class='${current == "index" ? "active" : "" }'><a href='<spring:url value="/"/>'>Home</a></li>
-              <li class='${current == "users" ? "active" : "" }' ><a href='<spring:url value="/users.html"/>'>Users</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
+              <security:authorize access="hasRole('ADMIN')">
+              	<li class='${current == "users" ? "active" : "" }' ><a href='<spring:url value="/users.html"/>'>Users</a></li>
+              </security:authorize>
+              <security:authorize access="! isAuthenticated()">
+              	<li class='${current == "user-register" ? "active" : "" }' ><a href='<spring:url value="/register.html"/>'>Register</a></li>
+              </security:authorize>
+              <security:authorize access="! isAuthenticated()">
+              	<li class='${current == "login" ? "active" : "" }' ><a href='<spring:url value="/login.html"/>'>Login</a></li>
+              </security:authorize>
+              <security:authorize access="isAuthenticated()">	
+              	<li class='${current == "login" ? "active" : "" }' ><a href='<spring:url value="/logout"/>'>Logout</a></li>
+              </security:authorize>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
